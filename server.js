@@ -16,6 +16,7 @@ mongoose.Promise = Promise;
 
 // connect to mongo db
 const mongoUri = config.mongoUri || config.mongo.host;
+console.log('mongoUri ' + config.mongoUri);
 mongoose.connect(mongoUri, {
 	socketOptions: {
 		keepAlive: 1
