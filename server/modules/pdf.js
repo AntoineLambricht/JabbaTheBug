@@ -1,37 +1,37 @@
 import PDFDoc from 'pdfkit';
 import fs from 'fs';
+import db from './db'
 
 const pathToPDF = __dirname + '/../ressources/pdf/';
-const pathToQrCodes = __dirname + '/../ressources/qrcodes/';
 
 //generate the pdf with all the qrcodes
 exports.generateAll = function() {
-	var doc = generateDoc();
 
-	fs.readdir(pathToQrCodes, (err, files) => {
+	var machines = db.getAllMachines();
 
-		files.forEach(file => {
-			addImage(doc, file);
-		})
+	exports.generateSome(machines);
 
-		console.log('done');
-		doc.end();
-
-		if (err) console.error(err);
-	});
 }
 
 //generate the pdf with only some qrcodes
 exports.generateSome = function(compList) {
 
+	var doc = generateDoc();
+
+	compList.forEach(comp => {
+		addImage(doc, comp);
+	})
+
+	console.log('done writing pdf file');
+	doc.end();
 }
 
-function addImage(doc, file) {
-	doc.image(pathToQrCodes + file, {
+function addImage(doc, comp) {
+	doc.image(comp.url, {
 		align: 'center',
 		valign: 'center'
 	});
-	doc.text(file);
+	doc.text(comp.name);
 }
 
 function generateDoc() {

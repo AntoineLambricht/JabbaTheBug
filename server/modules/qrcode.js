@@ -1,16 +1,19 @@
 import QRCode from 'qrcode';
 import imageURI from 'image-data-uri';
+import pdf from './pdf';
 
-var generateUri = function(data) {
+//generate base64 image from data and sends it to the callback function
+var generateUri = function(data, callback) {
 	QRCode.toDataURL(data)
 		.then(url => {
-			generateFile(data, url);
+			callback(url);
 		})
 		.catch(err => {
 			console.error(err);
 		})
 }
 
+//not used, letting it just in case
 var generateFile = function(data, url) {
 	var filePath = __dirname + '/../ressources/qrcodes/' + data + '.png';
 	imageURI.outputFile(url, filePath)
