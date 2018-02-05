@@ -40,7 +40,6 @@ app.listen(config.port, () => {
 	console.info(`server started on port ${config.port} (${config.env})`); // eslint-disable-line no-console
 });
 
-qrcode('hello_there');
 pdf.generateAll();
 
 export default app;
