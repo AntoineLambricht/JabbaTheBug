@@ -41,3 +41,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# assets
+/server/ressources/pdf/*
+/server/ressources/qrcodes/*
