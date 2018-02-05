@@ -43,5 +43,5 @@ testem.log
 Thumbs.db
 
 # assets
-/server/ressources/pdf/*
-/server/ressources/qrcodes/*
+/server/ressources/pdf/*.pdf
+/server/ressources/qrcodes/*.png
