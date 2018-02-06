@@ -1,28 +1,35 @@
 import PDFDoc from 'pdfkit';
 import fs from 'fs';
-import db from './db'
+import Machine from '../models/machine.model';
 
 const pathToPDF = __dirname + '/../ressources/pdf/';
 
-//generate the pdf with all the qrcodes
-exports.generateAll = function() {
+//generate pdf
+exports.generate = function(httpRes, compNameList) {
 
-	var machines = db.getAllMachines();
+	var compList;
 
-	exports.generateSome(machines);
+	if (compNameList) {
+		compList = Machine.getSome(compNameList);
+	} else {
+		compList = Machine.getAll();
+	}
 
-}
+	var doc = generateDoc(httpRes);
 
-//generate the pdf with only some qrcodes
-exports.generateSome = function(compList) {
-
-	var doc = generateDoc();
-
+	/*
+	compList is an array which should be composed of
+	objects with the next format :
+	{
+		url: 'qrcode base64 value',
+		name: 'machine name'
+	}
+	*/
 	compList.forEach(comp => {
 		addImage(doc, comp);
 	})
 
-	console.log('done writing pdf file');
+	//console.log('done writing pdf file');
 	doc.end();
 }
 
@@ -34,10 +41,11 @@ function addImage(doc, comp) {
 	doc.text(comp.name);
 }
 
-function generateDoc() {
+function generateDoc(httpRes) {
 	var doc = new PDFDoc;
 
-	doc.pipe(fs.createWriteStream(pathToPDF + 'output.pdf'));
+	doc.pipe(httpRes);
+	//doc.pipe(fs.createWriteStream(pathToPDF + 'output.pdf'));
 
 	return doc;
 }
