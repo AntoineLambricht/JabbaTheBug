@@ -6,29 +6,40 @@ import APIError from '../helpers/APIError';
 import TESTDB from '../modules/db'
 
 const MachineSchema = new mongoose.Schema({
-    name:{
-        type :String,
-        required:true
-    },
-    ip:{
-        type:String,
-        required:true
-    },
-    comment:{
-        type:String,
-        required:true
-    }
-    //TODO ajouter des trucs
+	name: {
+		type: String,
+		required: true
+	},
+	ip: {
+		type: String,
+		required: true
+	},
+	comment: {
+		type: String,
+		required: true
+	},
+	macaddress: {
+		type: String,
+		required: true
+	},
+	qrcode: {
+		type: String,
+		require: false
+	}
 });
 
 MachineSchema.statics = {
 
-    getAll(){
+	getAll() {
 
-        //TODO real connection
-        //return this.find().exec();
-        return TESTDB.getAllMachines()
-    }
+		//TODO real connection
+		//return this.find().exec();
+		return TESTDB.getAllMachines();
+	},
+
+	getSome(compNameList) {
+		return TESTDB.getSomeMachines(compNameList);
+	}
 
 }
 

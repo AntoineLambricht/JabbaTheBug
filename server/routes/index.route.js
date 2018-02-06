@@ -6,15 +6,17 @@ import machineRoutes from './machine.route';
 import userRoutes from './user.route';
 import bugRoutes from './bug.route';
 
-const router = express.Router(); 
+const router = express.Router();
 
 // mount auth routes at /auth
 router.use('/auth', authRoutes);
 
-// authenticate user for accessing to all /machines routes 
-router.use('/machines',passport.authenticate('jwt',{session : false}));
+// authenticate user for accessing to all /machines routes
+/*router.use('/machines', passport.authenticate('jwt', {
+	session: false
+}));*/
 // mount machines routes at /machines
-router.use('/machines',machineRoutes);
+router.use('/machines', machineRoutes);
 
 // mount users routes at /users
 router.use('/users', userRoutes);
