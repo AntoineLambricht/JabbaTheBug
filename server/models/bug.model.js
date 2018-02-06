@@ -1,4 +1,5 @@
-
+import mongoose from "mongoose";
+import TESTDB from "../modules/db";
 
 
 const BugSchema = new mongoose.Schema({
@@ -28,3 +29,17 @@ const BugSchema = new mongoose.Schema({
   }
 
 })
+
+BugSchema.statics = {
+
+  getAll(){
+
+    //TODO real connection
+    //return this.find().exec();
+    return TESTDB.getAllBugs()
+  }
+
+}
+
+
+export default mongoose.model('Bug', BugSchema);
