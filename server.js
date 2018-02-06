@@ -7,8 +7,6 @@ import app from './server/config/express';
 import qrcode from './server/modules/qrcode';
 import pdf from './server/modules/pdf';
 
-Promise = require('bluebird');
-
 // make bluebird default Promise
 Promise = require('bluebird');
 
@@ -18,11 +16,7 @@ mongoose.Promise = Promise;
 // connect to mongo db
 const mongoUri = config.mongoUri || config.mongo.host;
 console.log('mongoUri ' + config.mongoUri);
-mongoose.connect(mongoUri, {
-	socketOptions: {
-		keepAlive: 1
-	}
-});
+mongoose.connect(mongoUri, {keepAlive: 1});
 mongoose.connection.on('error', () => {
 	throw new Error(`unable to connect to database: ${mongoUri}`);
 });
@@ -43,7 +37,7 @@ app.listen(config.port, () => {
 
 
 //test
-pdf.generateAll();
+//pdf.generateAll();
 /*
 qrcode('localhost:5000/api/report/machine?name=LEN1401', url => {
 	pdf.generateSome([{

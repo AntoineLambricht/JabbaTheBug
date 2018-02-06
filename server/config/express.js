@@ -8,11 +8,16 @@ import helmet from 'helmet';
 import path from 'path';
 import appRoot from 'app-root-path';
 import expressWinston from 'express-winston';
+import expressValidation from 'express-validation';
+import passport from 'passport';
+import httpStatus from 'http-status';
 
+import APIError from '../helpers/APIError'
 import config from './config';
 import routes from '../routes/index.route';
 import winstonInstance from './winston';
 
+require('./passport')(passport)
 
 const app = express();
 
@@ -39,6 +44,9 @@ app.use(compress());
 // secure apps by setting various HTTP headers
 app.use(helmet());
 
+//passport midleware
+app.use(passport.initialize());
+
 // enable detailed API logging in dev env
 if (config.env === 'development') {
 	expressWinston.requestWhitelist.push('body');
@@ -51,6 +59,20 @@ app.use('/api', routes);
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(appRoot.path, 'dist/index.html'));
+});
+
+// if error is not an instanceOf APIError, convert it.
+app.use((err, req, res, next) => {
+	if (err instanceof expressValidation.ValidationError) {
+	  // validation error contains errors which is an array of error each containing message[]
+	  const unifiedErrorMessage = err.errors.map(error => error.messages.join('. ')).join(' and ');
+	  const error = new APIError(unifiedErrorMessage, err.status, true);
+	  return next(error);
+	} else if (!(err instanceof APIError)) {
+	  const apiError = new APIError(err.message, err.status, err.isPublic);
+	  return next(apiError);
+	}
+	return next(err);
 });
 
 // catch 404 and forward to error handler
