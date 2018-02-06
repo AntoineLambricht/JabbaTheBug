@@ -14,4 +14,4 @@ function newBug(req, res, next){
     .catch(e => next(e));
 }
 
-export default { getAllMachines };
+export default { getAllBugs ,newBug};
