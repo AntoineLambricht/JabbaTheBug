@@ -1,10 +1,9 @@
 import QRCode from 'qrcode';
 import imageURI from 'image-data-uri';
-import pdf from './pdf';
 
 //generate base64 image from data and sends it to the callback function
-var generateUri = function(data, callback) {
-	QRCode.toDataURL(data)
+var generateUri = function(machine, callback) {
+	QRCode.toDataURL('jabbathebug://' + machine.name)
 		.then(url => {
 			callback(url);
 		})
