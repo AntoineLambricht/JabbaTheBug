@@ -9,11 +9,11 @@ function getAllBugs(req, res, next){
 }
 
 function newBug(req, res, next){
-    //TODO check if machine 
-    var machinename = req.body.machinename
+    var body = JSON.parse(req.body)
+    var machinename = body.machinename
     Machine.getSome(machinename).then(machines => {
         if(machines.length === 1){
-            var bug = new Bug(req.body)
+            var bug = new Bug(body)
             bug.save()
             .then(savedBug => res.json(savedBug))
             .catch(e => next(e));
