@@ -31,14 +31,22 @@ const MachineSchema = new mongoose.Schema({
 MachineSchema.statics = {
 
 	getAll() {
+		return this.find({})
+			.exec();
 
-		//TODO real connection
-		//return this.find().exec();
-		return TESTDB.getAllMachines();
+
+		//return TESTDB.getAllMachines();
 	},
 
 	getSome(compNameList) {
-		return TESTDB.getSomeMachines(compNameList);
+		return this.find({
+				"name": {
+					"$in": compNameList
+				}
+			})
+			.exec();
+
+		//return TESTDB.getSomeMachines(compNameList);
 	}
 
 }
