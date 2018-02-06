@@ -9,6 +9,8 @@ const envVarsSchema = Joi.object({
 			.default('development'),
 		SERVER_PORT: Joi.number()
 			.default(4040),
+		JWT_SECRET: Joi.string().required()
+    		.description('JWT Secret required to sign'),
 		MONGOOSE_DEBUG: Joi.boolean()
 			.when('NODE_ENV', {
 				is: Joi.string().equal('development'),
@@ -38,6 +40,7 @@ const config = {
 	env: envVars.NODE_ENV,
 	port: envVars.PORT || envVars.SERVER_PORT,
 	mongooseDebug: envVars.MONGOOSE_DEBUG,
+	jwtSecret: envVars.JWT_SECRET,
 	mongoUri: envVars.MONGODB_URI,
 	mongo: {
 		host: envVars.MONGO_HOST,
