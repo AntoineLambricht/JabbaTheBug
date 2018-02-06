@@ -21,7 +21,7 @@ const BugSchema = new mongoose.Schema({
     default: Date.now()
   },
   photo:{
-    type: Image,
+    type: String
   },
   statusinfo:{
     type: Boolean,
