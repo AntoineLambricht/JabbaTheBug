@@ -11,6 +11,7 @@ import expressWinston from 'express-winston';
 import expressValidation from 'express-validation';
 import passport from 'passport';
 import httpStatus from 'http-status';
+import cors from 'cors';
 
 import APIError from '../helpers/APIError'
 import config from './config';
@@ -43,6 +44,9 @@ app.use(compress());
 
 // secure apps by setting various HTTP headers
 app.use(helmet());
+
+// enable CORS - Cross Origin Resource Sharing
+app.use(cors());
 
 //passport midleware
 app.use(passport.initialize());
