@@ -3,8 +3,9 @@ import mongoose from 'mongoose';
 import config from './server/config/config';
 import app from './server/config/express';
 
-import qrcode from './server/models/qrcode';
-import pdf from './server/models/pdf';
+//imports for tests
+import qrcode from './server/modules/qrcode';
+import pdf from './server/modules/pdf';
 
 Promise = require('bluebird');
 
@@ -40,6 +41,17 @@ app.listen(config.port, () => {
 	console.info(`server started on port ${config.port} (${config.env})`); // eslint-disable-line no-console
 });
 
+
+//test
 pdf.generateAll();
+/*
+qrcode('localhost:5000/api/report/machine?name=LEN1401', url => {
+	pdf.generateSome([{
+		name: 'LEN1401',
+		url: url
+	}]);
+});
+*/
+
 
 export default app;
