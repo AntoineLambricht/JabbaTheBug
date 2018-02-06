@@ -5,7 +5,7 @@ export default {
     createBug:{
         body: {
             machinename: Joi.string().required(),
-            mailuser: Joi.strict().regex(/^[a-z0-9._-]+@(student.)?vinci.be$/).required(),
+            mailuser: Joi.string().regex(/^[a-z0-9._-]+@(student.)?vinci.be$/).required(),
             descrip: Joi.string().required(),
             photo: Joi.string().optional()
         }
