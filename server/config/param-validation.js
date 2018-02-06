@@ -2,6 +2,15 @@ import Joi from 'joi';
 
 export default {
 
+    createBug:{
+        body: {
+            machinename: Joi.string().required(),
+            mailuser: Joi.strict().required(),
+            descrip: Joi.string().required(),
+            photo: Joi.string().optional()
+        }
+    },
+
     createUser: {
         body: {
           username: Joi.string().required(),

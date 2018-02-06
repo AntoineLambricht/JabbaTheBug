@@ -4,6 +4,7 @@ import passport from 'passport';
 import authRoutes from './auth.route';
 import machineRoutes from './machine.route';
 import userRoutes from './user.route';
+import bugRoutes from './bug.route';
 
 const router = express.Router(); 
 
@@ -17,5 +18,8 @@ router.use('/machines',machineRoutes);
 
 // mount users routes at /users
 router.use('/users', userRoutes);
+
+// mount users routes at /users
+router.use('/bugs', bugRoutes);
 
 export default router;
