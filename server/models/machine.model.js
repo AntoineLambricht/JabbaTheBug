@@ -9,6 +9,7 @@
     	name: {
     		type: String,
     		required: true
+        //unique: true
     	},
     	ip: {
     		type: String,
@@ -25,7 +26,16 @@
     	qrcode: {
     		type: String,
     		require: false
-    	}
+    	},
+    	local:{
+    	  type: String,
+        require:true
+      },
+      active:{
+    	  type:Boolean,
+        require: true,
+        default : true
+      }
     });
 
     MachineSchema.statics = {
