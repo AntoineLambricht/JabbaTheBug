@@ -1,10 +1,11 @@
-import MachineSchema from '../models/machine.model';
+import Machine from '../models/machine.model';
 import fs from 'fs';
 
 var createMachine = function(line, regEx) {
 	var tab = line.split(regEx);
 
-	var machineData = new MachineSchema({
+
+	var machineData = new Machine({
 		name: tab[1],
 		ip: tab[0],
 		macaddress: tab[2],
@@ -15,16 +16,15 @@ var createMachine = function(line, regEx) {
 
 	machineData.save()
 	//TODO ajouter la machine a la DB
-	console.log(local)
+	//console.log(local)
 }
 
 
 exports.readfile = function(path) {
 	var array = fs.readFileSync(path).toString().split("\n");
-	for (var i in array) {
-		console.log(array[i]);
-		createMachine(i, ";")
-	}
+	array.forEach(elem => {
+		createMachine(elem, ";");
+	});
 }
 
 
