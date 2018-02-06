@@ -10,6 +10,6 @@ router.route('/')
     /** GET /api/bugs/ - return all bugs */
     .get()
     /** POST /api/bugs/ - add a new bug*/
-    .post(validate(paramValidation.createBug),bugCtrl.newBug)
+    .post((req,res,next)=>{req.body = JSON.parse(req.body)},validate(paramValidation.createBug),bugCtrl.newBug)
 
 export default router;
