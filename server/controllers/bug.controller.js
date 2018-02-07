@@ -23,7 +23,31 @@ function newBug(req, res, next){
         }
 
     }).catch(e => next(e))
-    
+
+}
+/**
+ * compBugList is an array which should be composed of
+ * objects with the next format :
+ *  {
+ *    bug_id : <bugs._id>,
+ *    status_info : 'true or false'
+ *  }
+ * */
+function changeStatus(req, res, next){
+
+  var compBugList = req.body.compBugList;
+  compBugList.forEach(comp => {
+    Bug.update({'_id' : comp.bug_id},{'statusinfo': comp.status_info})
+      .exec()
+      .catch(err => {
+        res.status(500);
+        err.message;
+      });
+    res.status(200);
+  })
+
+
+
 }
 
-export default { getAllBugs ,newBug};
+export default { getAllBugs ,newBug,changeStatus};

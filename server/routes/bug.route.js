@@ -12,4 +12,9 @@ router.route('/')
     /** POST /api/bugs/ - add a new bug*/
     .post(validate(paramValidation.createBug),bugCtrl.newBug)
 
+router.route('/status/')
+  /** POST /api/bugs/status/ - change the status of the bug */
+  .post(bugCtrl.changeStatus)
+
+
 export default router;
