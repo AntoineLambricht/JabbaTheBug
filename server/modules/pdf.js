@@ -28,9 +28,9 @@ function fillPdf(httpRes, compList) {
 
 	/*
 	compList is an array which should be composed of
-	objects with the next format :
+	objects with the next format (at least those elements):
 	{
-		url: 'qrcode base64 value',
+		qrcode: 'qrcode base64 value',
 		name: 'machine name'
 	}
 	*/

@@ -41,10 +41,10 @@
 
     	getAll() {
     		return this.find({})
-    			.exec();
-
-
-    		//return TESTDB.getAllMachines();
+    			.exec()
+    			.catch(err => {
+    				console.error(err);
+    			});
     	},
 
     	getSome(compNameList) {
@@ -53,11 +53,11 @@
     					"$in": compNameList
     				}
     			})
-    			.exec();
-
-    		//return TESTDB.getSomeMachines(compNameList);
+    			.exec()
+    			.catch(err => {
+    				console.error(err);
+    			});
     	}
-
     }
 
     export default mongoose.model('Machine', MachineSchema);
