@@ -37,7 +37,7 @@ function changeStatus(req, res, next){
 
   var compBugList = req.body.compBugList;
   compBugList.forEach(comp => {
-    Bug.update({'_id' : comp.bug_id},{'statusinfo': comp.status_info})
+    Bug.update({'_id' : ObjectId(comp.bug_id)},{'statusinfo': comp.status_info})
       .exec()
       .catch(err => {
         res.status(500);
@@ -50,4 +50,4 @@ function changeStatus(req, res, next){
 
 }
 
-export default { getAllBugs ,newBug};
+export default { getAllBugs ,newBug,changeStatus};
