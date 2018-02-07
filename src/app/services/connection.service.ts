@@ -11,15 +11,26 @@ const httpOptions = {
 @Injectable()
 export class ConnectionService {
 
+    connected:boolean;
     //path = "http://jabbathebug.tircher.be"
     constructor (private _http: Http, 
-        private _router: Router){}
+        private _router: Router){
+            this.connected = false;
+        }
+
+    getConnected(){
+        return this.connected;
+    }
+    changeConnected(){
+        this.connected = !this.connected;
+    }
 
     login(data: object): void {
         this._http.post('/api/auth/login', data, httpOptions)
             .subscribe(
             (response) => {
-                //Change route
+                //Change 
+                this.changeConnected();
                 this._router.navigate(['home']);
                 //this._alerteService.success("Welcome Back Boy");
             },

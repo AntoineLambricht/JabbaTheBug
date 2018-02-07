@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ConnectionService } from './services';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,11 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
   
-  constructor(private _router: Router){
+  title = 'Jabba the Bug';
 
-  }
+  constructor(private _router: Router,
+    private conn: ConnectionService){}
 
   ngOnInit() {
     this._router.navigate(['connection']);
