@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "mean-angular5"
+    "name": "angular.io-example"
   },
   "apps": [
     {
@@ -21,9 +21,7 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": [
-        "../node_modules/jquery/dist/jquery.min.js"
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
