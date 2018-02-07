@@ -50,4 +50,4 @@ function changeStatus(req, res, next){
 
 }
 
-export default { getAllBugs ,newBug};
+export default { getAllBugs ,newBug, changeStatus};

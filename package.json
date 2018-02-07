@@ -5,7 +5,6 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"ng build --watch\" \"nodemon server-start.js --watch dist --watch server\" ",
-    //"start": "ng build --watch && nodemon server-start.js --watch dist --watch server",
     "server": "node server-start.js",
     "build": "ng build --prod",
     "test": "ng test",
@@ -39,6 +38,7 @@
     "http-status": "^1.0.1",
     "image-data-uri": "^1.0.1",
     "joi": "^13.1.2",
+    "jquery": "^3.3.1",
     "method-override": "^2.3.10",
     "mongoose": "^5.0.3",
     "morgan": "^1.9.0",
@@ -57,6 +57,7 @@
     "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.8.3",
     "@types/jasminewd2": "~2.0.2",
+    "@types/jquery": "^3.3.0",
     "@types/node": "~6.0.60",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
