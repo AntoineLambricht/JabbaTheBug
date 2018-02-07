@@ -39,20 +39,15 @@ function changeStatus(req, res, next){
   compBugList.forEach(comp => {
     Bug.update({'_id' : comp.bug_id},{'statusinfo': comp.status_info})
       .exec()
-      .then(updated => {
-          res.status(200);
-          res.json(updated);
-        })
       .catch(err => {
         res.status(500);
-        res.json(err.message);
+        err.message;
       });
-      
-
+    res.status(200);
   })
 
 
 
 }
 
-export default { getAllBugs ,newBug,changeStatus};
+export default { getAllBugs ,newBug, changeStatus};
