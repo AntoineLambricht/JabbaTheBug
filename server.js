@@ -50,6 +50,7 @@ qrcode('localhost:5000/api/report/machine?name=LEN1401', url => {
 });
 */
 ipscan.readfile(__dirname + '/server/ressources/ipscan/ipscan017.txt');
+ipscan.readfile(__dirname + '/server/ressources/ipscan/ipscan019.txt');
 
 
 export default app;

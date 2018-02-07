@@ -1,47 +1,45 @@
 import Machine from '../models/machine.model';
 import fs from 'fs';
+import qrcode from './qrcode';
 
 var createMachine = function(line, regEx) {
+	line = line.slice(0, -1);
 	var tab = line.split(regEx);
 
-	/*
-		for (var elem in tab) {
-			tab[elem] = tab[elem].slice(1, -1);
-		}
-		*/
-	console.log(tab);
-	if (!tab[0] || tab[0] == "\"IP\"") {
+	for (var elem in tab) {
+		tab[elem] = tab[elem].slice(1, -1);
+	}
+
+	if (!tab[0] || tab[0] === 'IP') {
 		return;
 	}
 
+	var uri = qrcode('jabbathebug://' + tab[1])
+		.then(uri => {
 
-	var machineData = {
-		name: tab[1],
-		ip: tab[0],
-		macaddress: tab[2],
-		comment: tab[3],
-		local: "0" + tab[0].split(".")[2],
-		active: true
-	};
+			var machineData = {
+				name: tab[1],
+				ip: tab[0],
+				macaddress: tab[2],
+				comment: tab[3],
+				local: "0" + tab[0].split(".")[2],
+				active: true,
+				qrcode: uri
+			};
 
-	var option = {
-		upsert: true
-	};
-
-	console.log(tab[1])
-
-	Machine.update({
-			"name": tab[1]
-		}, machineData, option)
-		.exec()
+			Machine.update({
+					"name": tab[1]
+				}, machineData, {
+					upsert: true
+				})
+				.exec()
+				.catch(err => {
+					console.error(err);
+				});
+		})
 		.catch(err => {
-			err.message;
+			console.error(err);
 		});
-
-
-	//TODO ajouter la machine a la DB
-	//console.log(machineData.local)
-
 }
 
 
