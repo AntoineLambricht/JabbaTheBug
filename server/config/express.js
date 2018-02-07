@@ -58,7 +58,7 @@ app.use(express.static(path.join(appRoot.path, 'dist')));
 app.use('/api', routes);
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(appRoot.path, 'dist/index.html'));
+	res.sendFile(path.join(appRoot.path, 'src/index.html'));
 });
 
 // if error is not an instanceOf APIError, convert it.
