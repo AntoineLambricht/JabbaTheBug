@@ -8,17 +8,22 @@ import { AppComponent } from './app.component';
 import { ConnectionComponent } from './connection/connection.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { MachineComponent } from './machine/machine.component';
+import {FileSelectDirective} from "ng2-file-upload";
 
 @NgModule({
   declarations: [
     AppComponent,
     ConnectionComponent,
-    HomeComponent
+    HomeComponent,
+    MachineComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+
   ],
   providers: [
     ConnectionService
