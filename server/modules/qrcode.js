@@ -2,14 +2,16 @@ import QRCode from 'qrcode';
 import imageURI from 'image-data-uri';
 
 //generate base64 image from data and sends it to the callback function
-var generateUri = function(machine, callback) {
-	QRCode.toDataURL('jabbathebug://' + machine.name)
-		.then(url => {
-			callback(url);
-		})
-		.catch(err => {
-			console.error(err);
-		})
+var generateUri = function(data, callback) {
+	return new Promise((resolve, reject) => {
+		QRCode.toDataURL(data)
+			.then(url => {
+				resolve(url);
+			})
+			.catch(err => {
+				reject(err);
+			})
+	});
 }
 
 //not used, letting it just in case
