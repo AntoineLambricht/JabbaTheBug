@@ -1,6 +1,7 @@
 import APIError from '../helpers/APIError';
 import Machine from '../models/machine.model';
 import pdf from '../modules/pdf';
+import ipscan from '../modules/ipscan';
 
 function getAllMachines(req, res, next) {
 	res.json(Machine.getAll())
@@ -11,6 +12,10 @@ function getAllMachines(req, res, next) {
 	.catch(e => next(e))*/
 }
 
+function postIPScan(req, res) {
+	ipscan(req.body.file);
+}
+
 function getQRCodes(req, res) {
 	pdf(res, req.body.compList);
 	res.status(200);
@@ -18,5 +23,6 @@ function getQRCodes(req, res) {
 
 export default {
 	getAllMachines,
-	getQRCodes
+	getQRCodes,
+	postIPScan
 };

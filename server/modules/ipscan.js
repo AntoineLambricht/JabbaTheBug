@@ -46,28 +46,42 @@ var createMachine = function(line, regEx) {
 		});
 }
 
-
-exports.readfile = function(path) {
-	var array = fs.readFileSync(path).toString().split("\n");
-	var numLocal = path.slice(-7, -4);
-	numLocal + "";
-	console.log("le num du local " + numLocal);
-	Machine.update({
-			"local": numLocal
-		}, {
-			$set: {
-				"active": false
-			}
-		}, {
-			multi: true
+function readFile(path) {
+	return new Promise((resolve, reject) => {
+		fs.readFile(path, (err, data) => {
+			err ? reject(err) : resolve(data);
 		})
-		.exec()
-		.catch(err => {
-			err.message
-		});
-
-
-	array.forEach(elem => {
-		createMachine(elem, ';');
-	});
+	})
 }
+
+var treatFile = function(path) {
+	readFile(path)
+		.then(array => {
+			array = array.toString().split("\n");
+			console.log("file read");
+
+			var numLocal = path.slice(-7, -4);
+			numLocal + "";
+			console.log("le num du local " + numLocal);
+			Machine.update({
+					"local": numLocal
+				}, {
+					$set: {
+						"active": false
+					}
+				}, {
+					multi: true
+				})
+				.exec()
+				.catch(err => {
+					err.message
+				});
+
+
+			array.forEach(elem => {
+				createMachine(elem, ';');
+			});
+		});
+}
+
+module.exports = treatFile;

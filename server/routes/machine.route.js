@@ -8,7 +8,7 @@ router.route('/')
 	/** GET /api/machines/ - return all machines */
 	.get(machineCtrl.getAllMachines)
 	/** POST /api/machines/ - add/update machines from IPScan file*/
-	.post()
+	.post(machineCtrl.postIPScan)
 
 router.route('/qrcodes/')
 	.post(machineCtrl.getQRCodes)
