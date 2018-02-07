@@ -12,7 +12,7 @@ function getAllMachines(req, res, next) {
 }
 
 function getQRCodes(req, res) {
-	pdf.generate(res, req.body.compList);
+	pdf(res, req.body.compList);
 	res.status(200);
 }
 

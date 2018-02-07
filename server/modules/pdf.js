@@ -5,16 +5,25 @@ import Machine from '../models/machine.model';
 const pathToPDF = __dirname + '/../ressources/pdf/';
 
 //generate pdf
-exports.generate = function(httpRes, compNameList) {
-
-	var compList;
+var generate = function(httpRes, compNameList) {
 
 	if (compNameList) {
-		compList = Machine.getSome(compNameList);
+		Machine.getSome(compNameList)
+			.then(compList => fillPdf(httpRes, compList))
+			.catch(err => {
+				console.error(err);
+			});
 	} else {
-		compList = Machine.getAll();
+		Machine.getAll()
+			.then(compList => fillPdf(httpRes, compList))
+			.catch(err => {
+				console.error(err);
+			});
 	}
 
+}
+
+function fillPdf(httpRes, compList) {
 	var doc = generateDoc(httpRes);
 
 	/*
@@ -25,19 +34,36 @@ exports.generate = function(httpRes, compNameList) {
 		name: 'machine name'
 	}
 	*/
+
+	doc
+		.fontSize(25);
+
+	var height = 50;
+	var width = 50;
+	var nElem = 0;
+
 	compList.forEach(comp => {
-		addImage(doc, comp);
+		if (nElem % 4 === 0) {
+			height = 50;
+		}
+		addImage(doc, comp, width, height, nElem);
+		nElem++;
+		height += 180;
 	})
 
 	doc.end();
+
 }
 
-function addImage(doc, comp) {
-	doc.image(comp.url, {
-		align: 'center',
-		valign: 'center'
-	});
-	doc.text(comp.name);
+function addImage(doc, comp, width, height, nElem) {
+	if (nElem % 4 === 0 && nElem !== 0) {
+		doc
+			.addPage();
+	}
+	doc
+		.image(comp.qrcode, width, height, {})
+		.text(comp.name, width + 200, height + 50, {})
+		.rect(width, height, 400, 130).stroke();
 }
 
 function generateDoc(httpRes) {
@@ -48,3 +74,5 @@ function generateDoc(httpRes) {
 
 	return doc;
 }
+
+module.exports = generate;
