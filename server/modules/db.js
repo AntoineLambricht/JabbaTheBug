@@ -1,3 +1,4 @@
+//mock db
 exports.getSomeMachines = function() {
 	return [{
 			'comment': 'machine 019',
@@ -74,19 +75,20 @@ exports.getAllMachines = function() {
 }
 
 
-exports.getAllBugs = function(){
-  return [{
-    'machine': 'LEN0215',
-    'mailuser': 'romain@mail.com',
-    'descrip': 'description d un bug du pc',
-    'datehour': '',
-    'statusinfo': false,
-  },
-    {
-      'machine': 'LEN0215',
-      'mailuser': 'romain@mail.com',
-      'descrip': 'une autre desc',
-      'datehour': '',
-      'statusinfo': false,
-      }]
+exports.getAllBugs = function() {
+	return [{
+			'machine': 'LEN0215',
+			'mailuser': 'romain@mail.com',
+			'descrip': 'description d un bug du pc',
+			'datehour': '',
+			'statusinfo': false,
+		},
+		{
+			'machine': 'LEN0215',
+			'mailuser': 'romain@mail.com',
+			'descrip': 'une autre desc',
+			'datehour': '',
+			'statusinfo': false,
+		}
+	]
 }

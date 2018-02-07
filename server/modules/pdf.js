@@ -29,7 +29,6 @@ exports.generate = function(httpRes, compNameList) {
 		addImage(doc, comp);
 	})
 
-	//console.log('done writing pdf file');
 	doc.end();
 }
 

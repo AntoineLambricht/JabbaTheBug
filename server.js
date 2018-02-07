@@ -4,9 +4,11 @@ import config from './server/config/config';
 import app from './server/config/express';
 
 //imports for tests
+/*
 import qrcode from './server/modules/qrcode';
 import pdf from './server/modules/pdf';
 import ipscan from './server/modules/ipscan';
+*/
 
 // make bluebird default Promise
 Promise = require('bluebird');
@@ -49,8 +51,8 @@ qrcode('localhost:5000/api/report/machine?name=LEN1401', url => {
 	}]);
 });
 */
-ipscan.readfile(__dirname + '/server/ressources/ipscan/ipscan017.txt');
-ipscan.readfile(__dirname + '/server/ressources/ipscan/ipscan019.txt');
+//ipscan.readfile(__dirname + '/server/ressources/ipscan/ipscan017.txt');
+//ipscan.readfile(__dirname + '/server/ressources/ipscan/ipscan019.txt');
 
 
 export default app;

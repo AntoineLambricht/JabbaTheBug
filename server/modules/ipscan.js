@@ -2,6 +2,11 @@ import Machine from '../models/machine.model';
 import fs from 'fs';
 import qrcode from './qrcode';
 
+/*
+	Create one machine in the database or update its values if it exists,
+	put its active status to true or false accordingly of its existence
+	in the iptable file
+	*/
 var createMachine = function(line, regEx) {
 	line = line.slice(0, -1);
 	var tab = line.split(regEx);
@@ -16,7 +21,6 @@ var createMachine = function(line, regEx) {
 
 	var uri = qrcode('jabbathebug://' + tab[1])
 		.then(uri => {
-
 			var machineData = {
 				name: tab[1],
 				ip: tab[0],
@@ -67,7 +71,3 @@ exports.readfile = function(path) {
 		createMachine(elem, ';');
 	});
 }
-
-
-
-//readfile("D:\\3BIN\\Projet web\\workspace\\JabbaTheBug\\ipscan019.txt")
