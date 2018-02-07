@@ -5,7 +5,6 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"ng build --watch\" \"nodemon server-start.js --watch dist --watch server\" ",
-    //"start": "ng build --watch && nodemon server-start.js --watch dist --watch server",
     "server": "node server-start.js",
     "build": "ng build --prod",
     "test": "ng test",
