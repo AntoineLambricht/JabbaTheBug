@@ -1,3 +1,121 @@
-<p>
-  connection works!
-</p>
+<div ng-controller="LoginController" class="connection ">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 login_form col-md-offset-3" *ngIf="newLogin else signin">
+              <div class="login-panel panel panel-default border border-dark">
+                  <div class="panel-heading" style="text-align: center">
+                      <h3 class="panel-title">Login</h3>
+                  </div>
+                  <div class="panel-body">
+                      <div class="row">
+                          <form class="col-xs-10 col-xs-offset-1" id="loginForm" role="form">
+                              <fieldset>
+                                  <div class="form-group">
+                                      <fieldset>
+                                          Login:
+                                          <input class="form-control" id="loginFocus" placeholder="Login" name="login" type="text" autofocus required>
+                                      </fieldset>
+                                  </div>
+                                  <div class="form-group">
+                                      <fieldset>
+                                          Password:
+                                          <input class="form-control" placeholder="Password" name="password" type="password" value="" ng-minlength="4" required>
+                                      </fieldset>
+                                  </div>
+                                  <br>
+                                  <div class="form-group">
+                                      <fieldset>
+                                          <button class="btn btn-xl col-xs-6 col-xs-offset-3 btn-primary" (click)="logIn()">Log In</button>
+                                      </fieldset>
+                                  </div>
+                              </fieldset>
+                          </form>
+                      </div>
+                      <div style="text-align: right; padding-right: 15px">
+                          <p>
+                              <a (click)="change()">Sign in</a>
+                          </p>
+
+                      </div>
+                  </div>
+                  <div class="panel-heading panel-heading-bottom" style="text-align: center">
+                      <h2></h2>
+                  </div>
+              </div>
+          </div>
+          <ng-template #signin>
+              <div class="col-md-6 login_form col-md-offset-3">
+                  <div class="login-panel panel panel-default">
+                      <div class="panel-heading" style="text-align: center">
+                          <h2 class="panel-title">Sign In</h2>
+                      </div>
+                      <div class="panel-body">
+                          <div class="row">
+                              <form class="col-xs-10 col-xs-offset-1" id="signinForm" role="form">
+                                  <fieldset>
+                                      <div class="form-group">
+                                          <div class="row">
+                                              <fieldset class="col-xs-6">
+                                                  Firstname :
+                                                  <input class="form-control" id="signinFocus" placeholder="John" name="firstname" type="text" required>
+                                              </fieldset>
+                                              <fieldset class="col-xs-6">
+                                                  Lastname :
+                                                  <input class="form-control" placeholder="Bayer" name="lastname" type="text" required>
+                                              </fieldset>
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <fieldset>
+                                              Email :
+                                              <input class="form-control" placeholder="john@bayer.com" name="mail" type="email" required>
+                                          </fieldset>
+                                      </div>
+                                      <hr>
+                                      <div class="form-group">
+                                          <fieldset>
+                                              Login :
+                                              <input class="form-control" placeholder="JohnBayer" name="username" type="text" required>
+                                          </fieldset>
+                                      </div>
+                                      <div class="form-group">
+                                          <fieldset>
+                                              Password :
+                                              <input class="form-control" id="pwd_sign" placeholder="**********" name="password" type="password" value="" required>
+                                          </fieldset>
+                                      </div>
+                                      <div class="form-group">
+                                          <fieldset>
+                                              Confirm Password:
+                                              <input class="form-control" id="pwd_conf" placeholder="**********" name="password" type="password" value="" required>
+                                          </fieldset>
+                                      </div>
+                                      <br>
+                                      <div class="form-group">
+                                          <fieldset>
+                                              <button class="btn btn-xl col-xs-6 col-xs-offset-3 btn-primary" (click)="signIn()">Sign In</button>
+                                          </fieldset>
+                                      </div>
+                                  </fieldset>
+                              </form>
+                          </div>
+                          <div style="text-align: right; padding-right: 15px">
+                              <p>
+                                  <a (click)="change()">Log in</a>
+                              </p>
+                          </div>
+                      </div>
+                      <div class="panel-heading panel-heading-bottom" style="text-align: center">
+                          <h2></h2>
+                      </div>
+                  </div>
+              </div>
+          </ng-template>
+          <div class="col-xs-6 col-xs-offset-3" id="alertConnection" hidden>
+              <div class="alert fade in">
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
