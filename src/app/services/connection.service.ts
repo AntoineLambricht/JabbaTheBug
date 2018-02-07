@@ -31,7 +31,7 @@ export class ConnectionService {
             (response) => {
                 //Change 
                 this.changeConnected();
-                this._router.navigate(['home']);
+                this._router.navigate(['machine']);
                 //this._alerteService.success("Welcome Back Boy");
             },
             (err) => {
