@@ -1,10 +1,13 @@
 import { Injectable, OnInit }               from '@angular/core';
 import { Http, Headers, RequestOptions }    from '@angular/http';
 
+import { Machine } from '../models/machine';
+import { MachineComponent } from '../machine/index';
+
 @Injectable()
 export class MachineService{
     
-    machines = [];
+    listMachines = [];
     
     constructor(private _http: Http){}
 
@@ -14,12 +17,22 @@ export class MachineService{
 
     getMachines(){
         console.log("Im GtMachine")
-        this.machines = [];
+        this.listMachines = [];
         this._http.get("/api/machines")
             .subscribe(
                 (response)=>{
-                    var ret = response.json();
-                    console.log(ret)
+                    var listJson = response.json();
+                    console.log(this.listMachines);
+                    for (var i=0; i< listJson.length; i++){
+                        this.listMachines.push(new Machine(listJson[i].id, 
+                            listJson[i].ip,
+                            listJson[i].name,
+                            listJson[i].comment,
+                            listJson[i].macadress,
+                            listJson[i].local,
+                            listJson[i].active
+                        ));
+                    }
                 }, (err) => {
                     console.log("Get Machines Fail");
                 }

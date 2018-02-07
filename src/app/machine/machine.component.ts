@@ -9,7 +9,7 @@ import { MachineService }     from '../services';
 })
 export class MachineComponent implements OnInit {
 
-  machines = [];
+  //listMachine = [];
 
   constructor(private _machines: MachineService) { }
 

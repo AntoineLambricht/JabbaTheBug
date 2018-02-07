@@ -1,3 +1,15 @@
 <div>
   <p>bonjour</p>
 </div>
+<div>
+  <table>
+    <!-- <div *ngFor="let movie of _moviesList"> -->
+        <tr *ngFor="let machine of _machines.listMachines">
+            <td>{{ machine.local }}</td>
+            <td>{{ machine.name }}</td>
+            <td>{{ machine.ip }}</td>
+            <td>{{ machine.macaddress }}</td>
+            <td>{{ machine.comment }}</td>
+        </tr>
+      </table>
+</div>
