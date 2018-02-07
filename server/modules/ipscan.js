@@ -4,9 +4,11 @@ import fs from 'fs';
 var createMachine = function(line, regEx) {
 	var tab = line.split(regEx);
 
-	for (var elem in tab) {
-		tab[elem] = tab[elem].slice(1, -1);
-	}
+	/*
+		for (var elem in tab) {
+			tab[elem] = tab[elem].slice(1, -1);
+		}
+		*/
 	console.log(tab);
 	if (!tab[0] || tab[0] == "\"IP\"") {
 		return;
