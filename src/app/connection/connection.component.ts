@@ -28,8 +28,10 @@ export class ConnectionComponent implements OnInit {
 
   logIn(): void {
     var form = $('#loginForm');
+    
     var verif = verifChamps(form);
-    if(verif === "OK" && ($("#pwd_sign").val() != $("#pwd_conf").val())){
+
+    if(verif === "OK" && ($("#pwd_sign").val() !== $("#pwd_conf").val())){
       verif = "Les password ne sont pas identiques";
     }
 
