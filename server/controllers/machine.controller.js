@@ -3,12 +3,12 @@ import Machine from '../models/machine.model';
 import pdf from '../modules/pdf';
 
 function getAllMachines(req, res, next) {
-	res.json(Machine.getAll())
+	//res.json(Machine.getAll())
 	//TODO correct way with mongoose
 
-	/*Machine.getAll()
+	Machine.getAll()
 	.then(machines => res.json(machines))
-	.catch(e => next(e))*/
+	.catch(e => next(e))
 }
 
 function getQRCodes(req, res) {
