@@ -9,19 +9,20 @@ function getAllBugs(req, res, next){
 }
 
 function newBug(req, res, next){
-    var body = JSON.parse(req.body)
-    var machinename = body.machinename
-    Machine.getSome(machinename).then(machines => {
+    var machinename = req.body.machinename
+    Machine.getSome([machinename]).then(machines => {
+        console.log("getSome : " + machines)
         if(machines.length === 1){
-            var bug = new Bug(body)
+            var bug = new Bug(req.body)
             bug.save()
             .then(savedBug => res.json(savedBug))
             .catch(e => next(e));
         }else{
             res.status(404);
+            res.send("Machine non trouvée, contactez l'administrateur!")
         }
 
-    })
+    }).catch(e => next(e))
     
 }
 
