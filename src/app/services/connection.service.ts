@@ -25,6 +25,15 @@ export class ConnectionService {
         this.bugActive = "";
     }
 
+    setBug(){
+        this.machineActive="";
+        this.bugActive = "Activate";
+    }
+
+    setMachine(){
+
+    }
+
     getConnected(){
         return this.connected;
     }
