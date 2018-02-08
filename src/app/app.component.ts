@@ -15,7 +15,7 @@ export class AppComponent {
     private conn: ConnectionService){}
 
   ngOnInit() {
-    this._router.navigate(['connection']);
+    //this._router.navigate(['connection']);
   }
 
 }

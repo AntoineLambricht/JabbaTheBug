@@ -2,6 +2,7 @@
   <p>bonjour</p>
 </div>
 <div>
+  <input type="button" (click)="getQr()" value="get QR"/>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -10,6 +11,7 @@
         <th>Adresse IP</th>
         <th>Adresse MAC</th>
         <th>Commentaire</th>
+        <th><input type="checkbox" [(ngModel)]="selectedAll" (change)="selectAll()"/></th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +21,9 @@
         <td>{{ machine.ip }}</td>
         <td>{{ machine.macaddress }}</td>
         <td>{{ machine.comment }}</td>
+        <td><div class="form-check">
+          <input class="form-check-input" type="checkbox" [(ngModel)]="machine.checked"  (change)="checkIfAllSelected()">
+        </div>
       </tr>
     </tbody>
   </table>

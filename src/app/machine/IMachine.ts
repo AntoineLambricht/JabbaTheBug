@@ -5,4 +5,5 @@ export interface IMachine {
     macadress: string;
     local : string;
     active : boolean;
+    checked?:boolean;
 }
