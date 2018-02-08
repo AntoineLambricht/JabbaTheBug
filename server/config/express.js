@@ -1,6 +1,7 @@
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
+import multer from 'multer';
 import cookieParser from 'cookie-parser';
 import methodOverride from 'method-override';
 import compress from 'compression';
@@ -37,6 +38,8 @@ app.use(bodyParser.urlencoded({
 	extended: true,
 	limit: "50mb"
 }));
+
+//app.use(multer({dest: '../ressources/ipscan/'}));
 
 app.use(cookieParser());
 app.use(methodOverride());

@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   
   title = 'Jabba the Bug';
+  
+  bugActive: string;
+  machineActive: string;
 
   constructor(private _router: Router,
     private conn: ConnectionService){}

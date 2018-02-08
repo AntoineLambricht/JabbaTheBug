@@ -9,7 +9,8 @@ const routes: Routes = [
   
   {path: 'connection',            component: ConnectionComponent},
   {path: 'machine',               component: MachineComponent},
-  {path: 'bug',                   component: BugComponent}
+  {path: 'bug',                   component: BugComponent},
+  {path: '',                      component: MachineComponent}
 ]
 
 @NgModule({

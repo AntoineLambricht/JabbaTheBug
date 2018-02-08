@@ -17,9 +17,8 @@ export class ApiService {
   constructor(private _http: Http) { }
 
   private handleError(error: Response) {
-    console.log("blblblb"+error)
-    return Observable.throw(error.statusText);  
-  } 
+    return Observable.throw(error.statusText);
+  }
 
   getAllMachines(){
     return this._http
@@ -63,6 +62,20 @@ export class ApiService {
       .get("/api/machines/qrcodes"+query,options)
       .catch(this.handleError)
       
+  }
+
+  uploadFile(data : any){
+    console.log("before upload", data);
+    return this._http.post("/api/machines", data, httpOptions)
+      .catch(this.handleError)
+  }
+  private handleData(res: Response) {
+    let data = res.json();
+    return data;
+  }
+
+  private handleErrorApi(error: Response | any) {
+    return Observable.throw('API failed');
   }
 
 }

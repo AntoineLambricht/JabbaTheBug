@@ -12,11 +12,18 @@ const httpOptions = {
 export class ConnectionService {
 
     connected:boolean;
+    bugActive: string;
+    machineActive: string;
+    
     //path = "http://jabbathebug.tircher.be"
     constructor (private _http: Http, 
         private _router: Router){
             this.connected = false;
         }
+    ngOnInit(){
+        this.machineActive = "active";
+        this.bugActive = "";
+    }
 
     getConnected(){
         return this.connected;

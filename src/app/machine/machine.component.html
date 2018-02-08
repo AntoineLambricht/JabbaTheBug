@@ -1,4 +1,9 @@
-<div>
+<app-nav></app-nav>
+<div id="content_machine">
+    <input type="file" (change)="upload($event)" name="ipscan"/>
+    <button class="btn btn-primary">
+      ipscan
+    </button>
   <input type="button" (click)="getQr()" value="get qr"/>
   <table class="table table-bordered table-striped">
     <thead>
