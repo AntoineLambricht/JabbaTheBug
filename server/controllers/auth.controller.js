@@ -20,12 +20,10 @@ function login(req, res) {
         res.cookie("jwt",token)
         user.password = undefined;
         res.json(user);
-        //TODO redirect to a page
         res.status(200);
       } else {
         // If user is not found
         res.clearCookie('jwt');
-        //TODO redirect to login page
         res.status(401).json(info);
       }
     })(req, res);

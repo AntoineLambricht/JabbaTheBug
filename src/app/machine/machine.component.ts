@@ -1,24 +1,26 @@
 import { Component, OnInit }  from '@angular/core';
-import { MachineService }     from '../services';
+import { ApiService }  from '../services/api.service';
 
 @Component({
   selector: 'app-machine',
   templateUrl: './machine.component.html',
   styleUrls: ['./machine.component.css'],
-  providers: [MachineService]
+  providers: [ApiService]
 })
 export class MachineComponent implements OnInit {
 
-  //listMachine = [];
+  listMachine : any = [];
 
-  constructor(private _machines: MachineService) { }
 
-  ngOnInit() {
-    this._machines.getMachines()
+  constructor(private _api: ApiService) { 
   }
 
+  ngOnInit() {
+  console.log("test1")
+   this._api.getAllMachines()
+    .subscribe(machines=>{
+      this.listMachine = machines
+    });
+  } 
+
 }
-
-// function getMachines(){
-
-//}

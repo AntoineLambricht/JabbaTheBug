@@ -41,7 +41,8 @@
     MachineSchema.statics = {
 
     	getAll() {
-    		return this.find({})
+			return this.find({})
+				.select({"qrcode":0})
     			.exec();
 
 

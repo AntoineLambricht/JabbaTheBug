@@ -1,4 +1,17 @@
 export class Machine {
+    ip: string;
+    name: string;
+    comment: string;
+    macadress: string;
+    local : string;
+    active : boolean;
+
+    constructor(values: Object = {}) {
+        Object.assign(this, values);
+    }
+}
+
+/*export class Machine {
     private _qrcode: string;
 
     constructor(private _id: string,
@@ -46,5 +59,5 @@ export class Machine {
         this._qrcode = qr;
     }
 
-}
+}*/
 
