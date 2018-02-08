@@ -11,8 +11,9 @@ import { BugComponent }         from './bug';
 import { ConnectionComponent }  from './connection/connection.component';
 import { MachineComponent }     from './machine/machine.component';
 import { PapaParseModule }      from 'ngx-papaparse';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http'
 
+import { ApiRequestInterceptor } from './interceptors/apiRequest.insterceptor'
 import { ConnectionService }    from './services';
 import { NavComponent } from './nav/nav.component';
 
@@ -35,7 +36,12 @@ import { NavComponent } from './nav/nav.component';
     HttpClientModule
   ],
   providers: [
-    ConnectionService
+    ConnectionService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass: ApiRequestInterceptor,
+      multi:true
+    }
   ],
   bootstrap: [AppComponent]
 })
