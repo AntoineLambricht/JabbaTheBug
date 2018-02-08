@@ -1,5 +1,15 @@
 <div id="content_bug">
-
+  <div class="btn-group btn-carre btn-group-toggle" data-toggle="buttons">
+    <label class="btn btn-secondary {{activ}}">
+      <input type="radio" (click)="setActiv()" > Machine active
+    </label>
+    <label class="btn btn-secondary {{resolved}}">
+      <input type="radio" (click)="setResolved()"> Bug résolu
+    </label>
+    <label class="btn btn-secondary {{inactiv}}">
+      <input type="radio" (click)="setInactiv()"> Machine incative
+    </label>
+  </div>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -10,17 +20,58 @@
       </tr>
     </thead>
     <tbody>
-      <!-- <tr>
-        <td>9</td>
-        <td>8</td>
-        <td>7</td>
-        <td>6</td>
-      </tr> -->
       <tr *ngFor="let bug of listBug">
-          <td>{{ bug.machinename }}</td>
-          <td>{{ bug.descrip }}</td>
-          <td>{{ bug.mailuser }}</td>
-          <td>checkbox is coming</td>
+        <td class="text-center">{{ bug.machinename }}</td>
+        <td>
+          <div class="row">
+            <div class="col-xs-10">
+              <p>{{ bug.descrip }}</p>
+            </div>
+            <a class=" col-xs-1 col-xs-offset-1" (click)="details(bug)">
+              <div *ngIf="bug.showDetails === true; then showPlus; else showMin"></div>
+              <ng-template #showPlus>
+                <p>-</p>
+              </ng-template>
+              <ng-template #showMin>
+                <p>+</p>
+              </ng-template>
+            </a>
+            <div class="col-xs-12">
+              <div *ngIf="bug.showDetails === true">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td>Adresse Ip</td>
+                          <td>{{ bug.machine.ip}}</td>
+                        </tr>
+                        <tr>
+                          <td>Adresse Mac</td>
+                          <td>{{ bug.machine.macaddress}}</td>
+                        </tr>
+                        <tr>
+                          <td>Local</td>
+                          <td>{{ bug.machine.local}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                  <div class="col-xs-6" *ngIf="bug.photo">
+                    <img class="bugListPics" src="{{bug.photo}}" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="text-center">{{ bug.mailuser }}</td>
+        <td class="text-center">
+          <div class="form-check text-center">
+            <input class="form-check-input" type="checkbox" value="" (change)="changeCheck(bug._id, bug.statusinfo)" [(ngModel)]="bug.statusinfo">
+          </div>
+        </td>
         </tr>
     </tbody>
   </table>

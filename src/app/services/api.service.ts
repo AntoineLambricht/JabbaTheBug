@@ -9,11 +9,6 @@ const httpOptions = {
   headers: new Headers({ 'Content-Type': 'application/json' })
 };
 
-const httpOptionsUp = {
-  headers: new Headers({ 'Content-Type': 'multipart/form-data' ,'Accept' : 'application/json'})
-
-};
-
 @Injectable()
 export class ApiService {
 
@@ -39,6 +34,18 @@ export class ApiService {
         return <IBug[]>bug.json()
       })
       .catch(this.handleError)
+  }
+
+  changeBugStatus(data: object){
+    //console.log(data["status_info"])
+    return this._http.post("/api/bugs/status", data, httpOptions)
+        .map((response) => {
+          console.log("api.service - Ok");
+          return data;
+        }, (err) => {
+
+        })
+        .catch(this.handleError);
   }
 
   uploadFile(data : any){
