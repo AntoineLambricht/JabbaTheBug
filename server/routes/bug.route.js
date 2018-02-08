@@ -8,7 +8,7 @@ const router = express.Router(); // eslint-disable-line new-cap
 
 router.route('/')
     /** GET /api/bugs/ - return all bugs */
-    .get()
+    .get(bugCtrl.getAllBugs())
     /** POST /api/bugs/ - add a new bug*/
     .post(validate(paramValidation.createBug),bugCtrl.newBug)
 
