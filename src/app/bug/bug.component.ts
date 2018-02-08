@@ -12,6 +12,7 @@ import { IBug }               from './IBug';
 export class BugComponent implements OnInit {
 
   listBug: any = [];
+  listBugDisplayed: any = [];
   listMachine: any= [];
 
   activ: string;
@@ -73,14 +74,12 @@ export class BugComponent implements OnInit {
   }
 
   private correspMachBug(){
-    console.log("-", this.listMachine)
     this.listBug.forEach(element => {
       var bugMachName = element.machinename;
       element["showDetails"] = false;
       element["machine"] = this.listMachine.find(x => x.name === bugMachName);
     });
-  }
-  
+  } 
 }
 
 

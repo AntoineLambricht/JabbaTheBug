@@ -25,3 +25,10 @@
     cursor: inherit;
     display: block;
 }
+
+#red{
+    background-color: #ff8080;
+}
+#white{
+    background-color: #FFFFFF; 
+}

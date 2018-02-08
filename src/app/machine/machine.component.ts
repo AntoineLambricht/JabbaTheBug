@@ -15,6 +15,7 @@ export class MachineComponent implements OnInit {
   listMachine: any = [];
   selectedAll = false;
 
+  color="";
 
   constructor(private _api: ApiService, private _papa: PapaParseService) {
   }
