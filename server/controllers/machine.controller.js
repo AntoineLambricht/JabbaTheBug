@@ -3,30 +3,21 @@ import Machine from '../models/machine.model';
 import pdf from '../modules/pdf';
 import ipscan from '../modules/ipscan';
 
-
-
-
-
-
-
 function getAllMachines(req, res, next) {
 	Machine.getAll()
-	.then(machines => res.json(machines))
-	.catch(e => next(e));
+		.then(machines => res.json(machines))
+		.catch(e => next(e));
 }
 
-function postIPScan(req, res) {
-	ipscan(req.body.file);
-}
-
+//get the generated pdf for chosen machines
 function getQRCodes(req, res) {
 	pdf(res, req.query.compList);
 	res.status(200);
 }
 
+//submit an ipscan JSON data ready to be added in the db
 function postIPScan(req, res) {
-  console.log(req.body);
-  ipscan.readfile(req.body);
+	ipscan.readfile(req.body);
 }
 
 export default {

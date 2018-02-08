@@ -4,54 +4,44 @@ import qrcode from './qrcode'
 
 var createMachine = function(tab) {
 
-
-	/*for (var elem in tab) {
-		tab[elem] = tab[elem].slice(1, -1);
-	}*/
-	console.log(tab);
+	//check for the header
 	if (!tab[0] || tab[0] == "IP") {
 		return;
 	}
+	//generate the qrcode for the entry
+	qrcode('jabbathebug://' + tab[1])
+		.then(uri => {
+			var machineData = {
+				name: tab[1],
+				ip: tab[0],
+				macaddress: tab[2],
+				comment: tab[3],
+				local: "0" + tab[0].split(".")[2],
+				active: true,
+				qrcode: uri
+			};
 
-	qrcode('jabbathebug://'+tab[1]).then(uri => {
-		var machineData = {
-			name: tab[1],
-			ip: tab[0],
-			macaddress: tab[2],
-			comment: tab[3],
-			local: "0" + tab[0].split(".")[2],
-			active: true,
-			qrcode: uri
-		};
+			var option = {
+				upsert: true
+			};
 
-		var option = {
-			upsert: true
-		};
-	
-		console.log(tab[1])
-	
-		Machine.update({
-				"name": tab[1]
-			}, machineData, option)
-			.exec()
-			.catch(err => {
-				err.message;
-			});
-	}).catch(e=>console.log(e))
-	
-
-	
-
-
-	//TODO ajouter la machine a la DB
-	//console.log(machineData.local)
+			Machine.update({
+					"name": tab[1]
+				}, machineData, option)
+				.exec()
+				.catch(err => {
+					err.message;
+				});
+		})
+		.catch(err => {
+			console.error(err);
+		})
 
 }
 
-
+//read data from a json and update the actives to be ready for treatment
 exports.readfile = function(tableau) {
-	//var array = fs.readFileSync(path).toString().split("\n");
-	var numLocal = "0"+tableau[1][0].split(".")[2];
+	var numLocal = "0" + tableau[1][0].split(".")[2];
 	numLocal + "";
 	console.log("le num du local " + numLocal);
 	Machine.update({
@@ -68,12 +58,7 @@ exports.readfile = function(tableau) {
 			err.message
 		});
 
-
 	tableau.forEach(elem => {
 		createMachine(elem);
 	});
 }
-
-
-
-//readfile("D:\\3BIN\\Projet web\\workspace\\JabbaTheBug\\ipscan019.txt")
