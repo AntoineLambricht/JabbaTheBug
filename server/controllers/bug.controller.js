@@ -18,8 +18,13 @@ function newBug(req, res, next) {
 			bug.save()
 				.then(savedBug => {
 					res.json(savedBug);
+					let structuredHtml = '<h1>JabbaTheBug was notified with a new bug</h1>';
+					structuredHtml += '<p>Machine :<b>' + savedBug.machinename + '</b></p>';
+					structuredHtml += '<hr><p>Mail of the sender :<b>' + savedBug.mailuser + '</b></p>';
+					structuredHtml += '<hr><p>Description of the bug :<b>' + savedBug.descrip + '</b></p>';
+					structuredHtml += '<hr><p>Photo : <img src="' + photo + '"/></p>';
 					//sends an email to all admins
-					nodemailer();
+					nodemailer(structuredHtml);
 				})
 				.catch(e => next(e));
 		} else {

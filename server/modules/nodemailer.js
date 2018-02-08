@@ -5,13 +5,12 @@ import User from '../models/user.model.js';
 var mailOptions = {
 	from: 'noreply-jabbathebug@tircher.be', // sender address
 	to: '', // list of receivers
-	subject: 'Notification from JabbaTheBug', // Subject line
-	text: 'A new bug was added to the application' // plain text body
+	subject: 'Notification from JabbaTheBug' // Subject line
 };
 
 // Generate test SMTP service account from ethereal.email
 // Only needed if you don't have a real mail account for testing
-var buildMailServerAndSend = function() {
+var buildMailServerAndSend = function(data) {
 	//nodemailer.createTestAccount((err, account) => {
 
 	// create reusable transporter object using the default SMTP transport
@@ -25,6 +24,12 @@ var buildMailServerAndSend = function() {
 			pass: 'jabbathebugultimatepassword123' // generated ethereal password
 		}
 	});
+
+	if (data) {
+		mailOptions.html = data;
+	} else {
+		mailOptions.html = '<p>A new bug was added to the application</p>';
+	}
 
 	User.getAll()
 		.then(users => {
