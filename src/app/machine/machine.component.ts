@@ -20,6 +20,10 @@ export class MachineComponent implements OnInit {
   constructor(private _api: ApiService, private _papa: PapaParseService) {
   }
 
+  ngOnInit() {
+    this.refreshList();
+  }
+
   upload(event: any) {
     let files = event.target.files;
     let file = files[0];
@@ -38,10 +42,6 @@ export class MachineComponent implements OnInit {
           });
       }
     });
-  }
-
-  ngOnInit() {
-    this.refreshList();
   }
 
   refreshList() {

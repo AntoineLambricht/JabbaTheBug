@@ -27,7 +27,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let machine of listMachine">
-        <div *ngIf="machine.active === true; then red; else white"></div>
+        <div *ngIf="machine.active; then white; else red"></div>
         <ng-template #red>
           <td id="red">{{ machine.local }}</td>
           <td id="red">{{ machine.name }}</td>
