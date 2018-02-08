@@ -1,5 +1,6 @@
 import { Component, OnInit }  from '@angular/core';
 import { ApiService }         from '../services';
+import { IBug } from './IBug';
 
 @Component({
   selector: 'app-bug',
@@ -15,10 +16,20 @@ export class BugComponent implements OnInit {
 
   ngOnInit() {
     this._api.getAllBugs()
-    .subscribe(bugs => {
+      .subscribe(bugs => {
       this.listBug = bugs;
       console.log(this.listBug);
     });
+  }
+
+  changeCheck(id: string){
+    var bug= {};
+    bug["bug_id"] = id;
+    bug["status_info"] = true;
+    this._api.changeBugStatus(bug)
+      .subscribe(response => {
+        console.log("Status Changed");
+      });
   }
 
 }
