@@ -1,5 +1,5 @@
 import { Injectable }                 from '@angular/core';
-import { Http, Headers , Response,RequestOptions ,ResponseContentType}   from '@angular/http';
+//import { Http, Headers , Response,RequestOptions ,ResponseContentType}   from '@angular/http';
 import {HttpClient,HttpHeaders,HttpParams} from '@angular/common/http'
 import { Observable }                 from "rxjs/Observable";
 import 'rxjs/Rx';
@@ -8,13 +8,13 @@ import { IBug }                       from "../bug/IBug";
 import { query } from '@angular/core/src/render3/instructions';
 
 const httpOptions = {
-  headers: new Headers({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
 export class ApiService {
 
-  constructor(private _http: Http) { }
+  constructor(private _http: HttpClient) { }
 
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
@@ -22,31 +22,18 @@ export class ApiService {
 
   getAllMachines(){
     return this._http
-      .get("/api/machines")
-      .map(machine => {
-        return <IMachine[]>machine.json()
-      })
+      .get<IMachine[]>("/api/machines")
       .catch(this.handleError)
   }
 
   getAllBugs(){
     return this._http
-      .get("/api/bugs")
-      .map(bug => {
-        return <IBug[]>bug.json()
-      })
+      .get<IBug[]>("/api/bugs")
       .catch(this.handleError)
   }
 
   changeBugStatus(data: object){
-    //console.log(data["status_info"])
     return this._http.post("/api/bugs/status", data, httpOptions)
-        .map((response) => {
-          console.log("api.service - Ok");
-          return data;
-        }, (err) => {
-
-        })
         .catch(this.handleError);
   }
 
@@ -57,9 +44,8 @@ export class ApiService {
     });
     query = query.slice(0,-1);
     console.log(query)
-    const options = new RequestOptions({responseType: ResponseContentType.Blob });
     return this._http
-      .get("/api/machines/qrcodes"+query,options)
+      .get("/api/machines/qrcodes"+query,{responseType: 'blob'})
       .catch(this.handleError)
       
   }
@@ -68,14 +54,6 @@ export class ApiService {
     console.log("before upload", data);
     return this._http.post("/api/machines", data, httpOptions)
       .catch(this.handleError)
-  }
-  private handleData(res: Response) {
-    let data = res.json();
-    return data;
-  }
-
-  private handleErrorApi(error: Response | any) {
-    return Observable.throw('API failed');
   }
 
 }

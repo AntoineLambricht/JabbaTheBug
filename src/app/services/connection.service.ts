@@ -1,9 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Headers, RequestOptions } from '@angular/http';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 const httpOptions = {
-    headers: new Headers({
+    headers: new HttpHeaders({
         'Content-Type': 'application/json'
     })
 }
@@ -15,8 +15,7 @@ export class ConnectionService {
     bugActive: string;
     machineActive: string;
     
-    //path = "http://jabbathebug.tircher.be"
-    constructor (private _http: Http, 
+    constructor (private _http: HttpClient, 
         private _router: Router){
             this.connected = false;
         }
