@@ -3,7 +3,6 @@
     import httpStatus from 'http-status';
 
     import APIError from '../helpers/APIError';
-    import TESTDB from '../modules/db'
 
     const MachineSchema = new mongoose.Schema({
     	name: {

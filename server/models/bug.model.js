@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
-import TESTDB from "../modules/db";
+import Promise from 'bluebird';
+import mongoose from 'mongoose';
+import httpStatus from 'http-status';
 
 
 const BugSchema = new mongoose.Schema({
@@ -34,10 +35,10 @@ BugSchema.statics = {
 
 	getAll() {
 		return this.find({})
-			.exec();
-		.catch(err => {
-			console.error(err);
-		})
+			.exec()
+			.catch(err => {
+				console.error(err);
+			});
 	}
 
 }

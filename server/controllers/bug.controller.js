@@ -47,8 +47,7 @@ function changeStatus(req, res, next) {
     Bug.update({ '_id': req.body.bug_id }, { 'statusinfo': req.body.status_info })
         .exec()
         .then(result => {
-            res.status(200)
-            res.send("ok")
+            res.json(result)
         })
         .catch(err => {
             next(err);

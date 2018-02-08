@@ -51,7 +51,6 @@ export class ApiService {
   }
 
   uploadFile(data : any){
-    console.log("before upload", data);
     return this._http.post("/api/machines", data, httpOptions)
       .catch(this.handleError)
   }
