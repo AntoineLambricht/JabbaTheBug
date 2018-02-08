@@ -14,9 +14,9 @@ export class BugComponent implements OnInit {
   listBug: any = [];
   listMachine: any= [];
 
-  activ: boolean;
-  inactiv: boolean;
-  resolved: boolean;
+  activ: string;
+  inactiv: string;
+  resolved: string;
 
   constructor(private _api: ApiService, 
     private domSanitizer: DomSanitizer) {}
@@ -32,6 +32,30 @@ export class BugComponent implements OnInit {
         console.log(this.listBug);
       });
     });
+    this.activ = "active";
+    this.resolved = "";
+    this.inactiv = "";
+  }
+
+  setActiv(){
+    console.log("setActiv")
+    this.activ = "active";
+    this.inactiv = "";
+    this.resolved = "";
+  }
+
+  setInactiv(){
+    console.log("SetInactiv")
+    this.activ = "";
+    this.inactiv = "active";
+    this.resolved = "";
+  }
+
+  setResolved(){
+    console.log("SetResolved");
+    this.activ = "";
+    this.inactiv = "";
+    this.resolved = "active";
   }
 
   details (bug: IBug){
