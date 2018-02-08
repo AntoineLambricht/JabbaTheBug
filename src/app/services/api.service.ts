@@ -1,6 +1,6 @@
 import { Injectable }                 from '@angular/core';
-import { Http, Headers , Response,RequestOptions }   from '@angular/http';
-//import {HttpClient,HttpHeaders,HttpParams} from '@angular/common/http'
+import { Http, Headers , Response,RequestOptions ,ResponseContentType}   from '@angular/http';
+import {HttpClient,HttpHeaders,HttpParams} from '@angular/common/http'
 import { Observable }                 from "rxjs/Observable";
 import 'rxjs/Rx';
 import { IMachine }                   from "../machine/IMachine";
@@ -58,8 +58,9 @@ export class ApiService {
     });
     query = query.slice(0,-1);
     console.log(query)
+    const options = new RequestOptions({responseType: ResponseContentType.Blob });
     return this._http
-      .get("/api/machines/qrcodes"+query)
+      .get("/api/machines/qrcodes"+query,options)
       .catch(this.handleError)
       
   }

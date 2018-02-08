@@ -13,6 +13,7 @@ import { MachineComponent }     from './machine/machine.component';
 import { HttpClientModule } from '@angular/common/http'
 
 import { ConnectionService }    from './services';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ConnectionService }    from './services';
     ConnectionComponent,
     MachineComponent,
     FileSelectDirective,
-    BugComponent
+    BugComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

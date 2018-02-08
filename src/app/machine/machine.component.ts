@@ -1,5 +1,7 @@
 import { Component, OnInit }  from '@angular/core';
 import { ApiService }  from '../services/api.service';
+import 'rxjs/Rx' ;
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-machine',
@@ -42,9 +44,14 @@ export class MachineComponent implements OnInit {
     console.log(this.listMachine.filter(machine=>machine.checked===true))
     var list =  this.listMachine.filter(machine=>machine.checked===true)
     if(list.lenght!==0){
-      this._api.getQr(list).subscribe(data=>console.log(data));
+      this._api.getQr(list).subscribe(data=>FileSaver.saveAs(new Blob([data.blob()], { type: 'application/pdf' }),"qrcode.pdf"));
     }
 
+  }
+  downloadPdf(data: Response){
+    var blob = new Blob([data], { type: 'application/pdf' });
+    var url= window.URL.createObjectURL(blob);
+    window.open(url);
   }
 
   

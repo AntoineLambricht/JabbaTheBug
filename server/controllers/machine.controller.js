@@ -15,7 +15,7 @@ function postIPScan(req, res) {
 
 function getQRCodes(req, res) {
 	pdf(res, req.query.compList);
-	res.status(200).setHeader('Content-Type', 'application/pdf');
+	res.status(200);
 }
 
 export default {

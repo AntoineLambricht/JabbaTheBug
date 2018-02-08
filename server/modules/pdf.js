@@ -2,7 +2,7 @@ import PDFDoc from 'pdfkit';
 import fs from 'fs';
 import Machine from '../models/machine.model';
 
-const pathToPDF = __dirname + '/../ressources/pdf/';
+const pathToPDF = __dirname + '/../ressources/pdf/output.pdf';
 
 //generate pdf
 var generate = function(httpRes, compNameList) {
@@ -17,7 +17,10 @@ var generate = function(httpRes, compNameList) {
 }
 
 function fillPdf(httpRes, compList) {
-	var doc = generateDoc(httpRes);
+
+	var doc = new PDFDoc;
+	var ws = fs.createWriteStream(pathToPDF)
+	doc.pipe(ws);
 
 	/*
 	compList is an array which should be composed of
@@ -45,7 +48,17 @@ function fillPdf(httpRes, compList) {
 	})
 
 	doc.end();
+	ws.on('finish',function(){
+		httpRes.setHeader('Content-Type', 'application/pdf')
+		httpRes.setHeader('Content-disposition', 'attachment; filename="output.pdf"' );
+		httpRes.download(pathToPDF, 'qr-codes.pdf', function(err){
+			if (err) {
+				console.log("dowload err :"+err)}
+		});
+	})
 
+
+	
 }
 
 function addImage(doc, comp, width, height, nElem) {
@@ -60,10 +73,7 @@ function addImage(doc, comp, width, height, nElem) {
 }
 
 function generateDoc(httpRes) {
-	var doc = new PDFDoc;
-
-	doc.pipe(httpRes);
-	//doc.pipe(fs.createWriteStream(pathToPDF + 'output.pdf'));
+	
 
 	return doc;
 }

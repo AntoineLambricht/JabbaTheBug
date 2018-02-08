@@ -6,6 +6,7 @@ import { BugComponent }         from './bug';
 
 const routes: Routes = [
   // path: '**' => page not fund
+  
   {path: 'connection',            component: ConnectionComponent},
   {path: 'machine',               component: MachineComponent},
   {path: 'bug',                   component: BugComponent}
