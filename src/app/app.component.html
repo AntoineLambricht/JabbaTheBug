@@ -1,13 +1,25 @@
 <div *ngIf="conn.connected">
-    <h1>{{title}}</h1>
-    <nav>
-        <div>
-            <button class="col-xs-6">
-                Problèmes
-            </button>
-            <button class="col-xs-6">
-                Machines
-            </button>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Jabba the Bug</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a routerLink="/machine">Machines
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/bug">Problèmes
+                            <span class="sr-only">(current)</span>
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </div>

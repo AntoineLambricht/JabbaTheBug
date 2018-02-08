@@ -16,7 +16,6 @@ export class MachineComponent implements OnInit {
   }
 
   ngOnInit() {
-  console.log("test1")
    this._api.getAllMachines()
     .subscribe(machines=>{
       this.listMachine = machines

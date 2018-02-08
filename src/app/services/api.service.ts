@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers , Response } from '@angular/http';
-import {Observable} from "rxjs/Observable";
+import { Injectable }                 from '@angular/core';
+import { Http, Headers , Response }   from '@angular/http';
+import { Observable }                 from "rxjs/Observable";
 import 'rxjs/Rx';
-import {IMachine} from "../machine/IMachine"
+import { IMachine }                   from "../machine/IMachine";
+import { IBug }                       from "../bug/IBug";
 
 const httpOptions = {
   headers: new Headers({ 'Content-Type': 'application/json' })
@@ -27,7 +28,12 @@ export class ApiService {
   }
 
   getAllBugs(){
-
+    return this._http
+      .get("/api/bugs")
+      .map(bug => {
+        return <IBug[]>bug.json()
+      })
+      .catch(this.handleError)
   }
 
 }
