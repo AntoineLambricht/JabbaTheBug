@@ -17,8 +17,8 @@ export class BugComponent implements OnInit {
     this._api.getAllBugs()
     .subscribe(bugs => {
       this.listBug = bugs;
+      console.log(this.listBug);
     });
-    console.log(this.listBug);
   }
 
 }

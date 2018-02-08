@@ -1,3 +1,29 @@
-<p>
-  bug works!
-</p>
+<div id="content_bug">
+  <button class="btn btn-primary">
+    ipscan
+  </button>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Machine</th>
+        <th>Description</th>
+        <th>Mail</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <td>9</td>
+        <td>8</td>
+        <td>7</td>
+        <td>6</td>
+      </tr> -->
+      <tr *ngFor="let bug of listBug">
+          <td>{{ bug.machinename }}</td>
+          <td>{{ bug.descrip }}</td>
+          <td>{{ bug.mailuser }}</td>
+          <td>checkbox is coming</td>
+        </tr>
+    </tbody>
+  </table>
+</div>

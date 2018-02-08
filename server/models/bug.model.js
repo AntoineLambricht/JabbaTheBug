@@ -35,9 +35,7 @@ BugSchema.statics = {
   getAll(){
 
     //TODO real connection
-    var ret = this.find().exec();
-    console.log(ret);
-    return ret;
+    return this.find({}).exec();
     //return TESTDB.getAllBugs()
   }
 
