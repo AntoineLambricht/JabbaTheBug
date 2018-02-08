@@ -4,13 +4,13 @@ import pdf from '../modules/pdf';
 
 function getAllMachines(req, res, next) {
 	Machine.getAll()
-	.then(machines => res.json(machines))
-	.catch(e => next(e))
+		.then(machines => res.json(machines))
+		.catch(e => next(e))
 }
 
 function getQRCodes(req, res) {
 	pdf.generate(res, req.body.compList);
-	res.status(200);
+	res.status(200).setHeader('Content-Type', 'application/pdf');
 }
 
 export default {
