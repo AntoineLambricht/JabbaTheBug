@@ -12,6 +12,9 @@ import { IBug }               from './IBug';
 export class BugComponent implements OnInit {
 
   listBug: any = [];
+  listBugActive: any = [];
+  listBugInactive: any = [];
+  listBugResolved: any = [];
   listMachine: any= [];
 
   activ: string;
@@ -29,7 +32,7 @@ export class BugComponent implements OnInit {
         .subscribe(bugs => {
         this.listBug = bugs;
         this.correspMachBug();
-        console.log(this.listBug);
+        this.listBug = this.listBugActive;
       });
     });
     this.activ = "active";
@@ -38,21 +41,21 @@ export class BugComponent implements OnInit {
   }
 
   setActiv(){
-    console.log("setActiv")
+    this.listBug = this.listBugActive;
     this.activ = "active";
     this.inactiv = "";
     this.resolved = "";
   }
 
   setInactiv(){
-    console.log("SetInactiv")
+    this.listBug = this.listBugInactive;
     this.activ = "";
     this.inactiv = "active";
     this.resolved = "";
   }
 
   setResolved(){
-    console.log("SetResolved");
+    this.listBug = this.listBugResolved;
     this.activ = "";
     this.inactiv = "";
     this.resolved = "active";
@@ -73,14 +76,20 @@ export class BugComponent implements OnInit {
   }
 
   private correspMachBug(){
-    console.log("-", this.listMachine)
     this.listBug.forEach(element => {
       var bugMachName = element.machinename;
-      element["showDetails"] = false;
       element["machine"] = this.listMachine.find(x => x.name === bugMachName);
+      element["showDetails"] = false;
+      if(element.statusinfo){
+        this.listBugResolved[this.listBugResolved.length] = element;
+      }
+      else if (!element.machine.active){
+        this.listBugInactive[this.listBugInactive.length] = element;
+      } else{
+        this.listBugActive[this.listBugActive.length] = element;
+      }
     });
-  }
-  
+  } 
 }
 
 

@@ -1,11 +1,18 @@
 <app-nav></app-nav>
 <div id="content_machine">
-    <input type="file" (change)="upload($event)" name="ipscan"/>
-    <button class="btn btn-primary">
-      ipscan
-    </button>
-  <input type="button" (click)="getQr()" value="get qr"/>
-  <table class="table table-bordered table-striped">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <label class="col-xs-3 btn btn-default btn-carre btn-file">
+          Choisir fichier
+          <input type="file" style="display: none;" (change)="upload($event)" name="ipscan" />
+        </label>
+        <!-- <input class="col-xs-3 btn btn-carre" type="file" (change)="upload($event)" name="ipscan"/> -->
+        <button class="col-xs-3 col-xs-offset-6 btn btn-carre pull-right" (click)="getQr()">Get QR-Code</button>
+      </div>
+    </div>
+  </div>
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Local</th>
@@ -13,19 +20,38 @@
         <th>Adresse IP</th>
         <th>Adresse MAC</th>
         <th>Commentaire</th>
-        <th><input type="checkbox" [(ngModel)]="selectedAll" (change)="selectAll()"/></th>
+        <th>
+          <input type="checkbox" [(ngModel)]="selectedAll" (change)="selectAll()" />
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let machine of listMachine">
-        <td>{{ machine.local }}</td>
-        <td>{{ machine.name }}</td>
-        <td>{{ machine.ip }}</td>
-        <td>{{ machine.macaddress }}</td>
-        <td>{{ machine.comment }}</td>
-        <td><div class="form-check">
-          <input class="form-check-input" type="checkbox" [(ngModel)]="machine.checked"  (change)="checkIfAllSelected()">
-        </div>
+        <div *ngIf="machine.active; then white; else red"></div>
+        <ng-template #red>
+          <td id="red">{{ machine.local }}</td>
+          <td id="red">{{ machine.name }}</td>
+          <td id="red">{{ machine.ip }}</td>
+          <td id="red">{{ machine.macaddress }}</td>
+          <td id="red">{{ machine.comment }}</td>
+          <td id="red">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="machine.checked" (change)="checkIfAllSelected()">
+            </div>
+          </td>
+        </ng-template>
+        <ng-template #white>
+          <td id="white">{{ machine.local }}</td>
+          <td id="white">{{ machine.name }}</td>
+          <td id="white">{{ machine.ip }}</td>
+          <td id="white">{{ machine.macaddress }}</td>
+          <td id="white">{{ machine.comment }}</td>
+          <td id="white">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="machine.checked" (change)="checkIfAllSelected()">
+            </div>
+          </td>
+        </ng-template>
       </tr>
     </tbody>
   </table>

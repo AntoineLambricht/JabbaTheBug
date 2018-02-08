@@ -12,16 +12,17 @@ const router = express.Router();
 router.use('/auth', authRoutes);
 
 // authenticate user for accessing to all /machines routes
-/*router.use('/machines', passport.authenticate('jwt', {
-	session: false
-}));*/
+router.use('/machines', passport.authenticate('jwt', {session: false}));
 // mount machines routes at /machines
 router.use('/machines', machineRoutes);
 
-// mount users routes at /users
-router.use('/users', userRoutes);
-
+// authenticate user for accessing to all /bugs routes
+router.use('/bugs', passport.authenticate('jwt', {session: false}));
 // mount users routes at /users
 router.use('/bugs', bugRoutes);
+
+//Not used yet
+// mount users routes at /users
+router.use('/users', userRoutes);
 
 export default router;

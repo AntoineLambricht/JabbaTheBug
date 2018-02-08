@@ -44,16 +44,15 @@ function newBug(req, res, next) {
  *  }
  * */
 function changeStatus(req, res, next) {
-	Bug.update({
-			'_id': req.body.bug_id
-		}, {
-			'statusinfo': req.body.status_info
-		})
-		.exec().then(res.status(200))
-		.catch(err => {
-			res.status(500);
-			err.message;
-		});
+    Bug.update({ '_id': req.body.bug_id }, { 'statusinfo': req.body.status_info })
+        .exec()
+        .then(result => {
+            res.status(200)
+            res.send("ok")
+        })
+        .catch(err => {
+            next(err);
+        });
 }
 
 export default {

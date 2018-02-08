@@ -6,4 +6,5 @@ export interface IMachine {
     local : string;
     active : boolean;
     checked?:boolean;
+    color: string;
 }

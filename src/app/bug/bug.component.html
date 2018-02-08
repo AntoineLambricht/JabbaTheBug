@@ -2,7 +2,7 @@
 <div id="content_bug">
   <div class="btn-group btn-carre btn-group-toggle" data-toggle="buttons">
     <label class="btn btn-secondary {{activ}}">
-      <input type="radio" (click)="setActiv()" > Machine active
+      <input type="radio" (click)="setActiv()" > Bug en cours
     </label>
     <label class="btn btn-secondary {{resolved}}">
       <input type="radio" (click)="setResolved()"> Bug résolu
@@ -67,7 +67,7 @@
             </div>
           </div>
         </td>
-        <td class="text-center">{{ bug.mailuser }}</td>
+        <td class="text-center"> <a href="mailto:{{bug.mailuser}}">{{ bug.mailuser }}</a></td>
         <td class="text-center">
           <div class="form-check text-center">
             <input class="form-check-input" type="checkbox" value="" (change)="changeCheck(bug._id, bug.statusinfo)" [(ngModel)]="bug.statusinfo">
