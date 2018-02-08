@@ -18,6 +18,7 @@ export class BugComponent implements OnInit {
     .subscribe(bugs => {
       this.listBug = bugs;
     });
+    console.log(this.listBug);
   }
 
 }
