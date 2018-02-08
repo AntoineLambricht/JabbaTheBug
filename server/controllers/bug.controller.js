@@ -43,8 +43,7 @@ function changeStatus(req, res, next){
         res.status(500);
         err.message;
       });
-    // res.status(200);
-  })
+    })
 
 
 
