@@ -9,7 +9,6 @@
     	name: {
     		type: String,
     		required: true
-        //unique: true
     	},
     	ip: {
     		type: String,
@@ -25,28 +24,27 @@
     	},
     	qrcode: {
     		type: String,
-    		require: false
+    		required: true
     	},
-    	local:{
-    	  type: String,
-        require:true
-      },
-      active:{
-    	  type:Boolean,
-        require: true,
-        default : true
-      }
+    	local: {
+    		type: String,
+    		required: true
+    	},
+    	active: {
+    		type: Boolean,
+    		required: true,
+    		default: true
+    	}
     });
 
     MachineSchema.statics = {
 
     	getAll() {
-			return this.find({})
-				.select({"qrcode":0})
-    			.exec();
-
-
-    		//return TESTDB.getAllMachines();
+    		return this.find({})
+    			.exec()
+    			.catch(err => {
+    				console.error(err);
+    			});
     	},
 
     	getSome(compNameList) {
@@ -55,11 +53,11 @@
     					"$in": compNameList
     				}
     			})
-    			.exec();
-
-    		//return TESTDB.getSomeMachines(compNameList);
+    			.exec()
+    			.catch(err => {
+    				console.error(err);
+    			});
     	}
-
     }
 
     export default mongoose.model('Machine', MachineSchema);
