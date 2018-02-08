@@ -39,6 +39,18 @@ export class ApiService {
       .catch(this.handleError)
   }
 
+  changeBugStatus(data: object){
+    //console.log(data["status_info"])
+    return this._http.post("/api/bugs/status", data, httpOptions)
+        .map((response) => {
+          console.log("api.service - Ok");
+          return data;
+        }, (err) => {
+
+        })
+        .catch(this.handleError);
+  }
+
   getQr(list){   
     let query = "?"
     list.forEach(element => {
