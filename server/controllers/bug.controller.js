@@ -39,7 +39,6 @@ function changeStatus(req, res, next){
   compBugList.forEach(comp => {
     Bug.update({'_id' : comp.bug_id},{'statusinfo': comp.status_info})
       .exec().then(res.status(200))
-      .exec()
       .catch(err => {
         res.status(500);
         err.message;
