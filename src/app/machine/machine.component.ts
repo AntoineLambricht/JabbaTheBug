@@ -64,8 +64,12 @@ export class MachineComponent implements OnInit {
 
   getQr() {
     var list = this.listMachine.filter(machine => machine.checked === true)
-    if (list.lenght > 0) {
-      this._api.getQr(list).subscribe(data => FileSaver.saveAs(new Blob([data.blob()], { type: 'application/pdf' }), "qrcode.pdf"));
+    console.log(list,list.length) 
+    if (list.length > 0) {
+      this._api.getQr(list).subscribe(data => {
+        //data is a blob
+        FileSaver.saveAs(data, "qrcode.pdf")}
+      );
     }
 
   }
