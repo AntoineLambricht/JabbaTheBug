@@ -1,14 +1,14 @@
 import Machine from '../models/machine.model';
 import fs from 'fs';
 
-var createMachine = function(line, regEx) {
-	var tab = line.split(regEx);
+var createMachine = function(tab) {
 
-	for (var elem in tab) {
+
+	/*for (var elem in tab) {
 		tab[elem] = tab[elem].slice(1, -1);
-	}
+	}*/
 	console.log(tab);
-	if (!tab[0] || tab[0] == "\"IP\"") {
+	if (!tab[0] || tab[0] == "IP") {
 		return;
 	}
 
@@ -43,9 +43,9 @@ var createMachine = function(line, regEx) {
 }
 
 
-exports.readfile = function(path) {
-	var array = fs.readFileSync(path).toString().split("\n");
-	var numLocal = path.slice(-7, -4);
+exports.readfile = function(tableau) {
+	//var array = fs.readFileSync(path).toString().split("\n");
+	var numLocal = "0"+tableau[1][0].split(".")[2];
 	numLocal + "";
 	console.log("le num du local " + numLocal);
 	Machine.update({
@@ -63,8 +63,8 @@ exports.readfile = function(path) {
 		});
 
 
-	array.forEach(elem => {
-		createMachine(elem, ';');
+	tableau.forEach(elem => {
+		createMachine(elem);
 	});
 }
 
