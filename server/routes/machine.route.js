@@ -11,6 +11,6 @@ router.route('/')
 	.post(machineCtrl.postIPScan)
 
 router.route('/qrcodes/')
-	.post(machineCtrl.getQRCodes)
+	.get(machineCtrl.getQRCodes)
 
 export default router;

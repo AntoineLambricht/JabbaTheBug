@@ -17,7 +17,7 @@ function postIPScan(req, res) {
 }
 
 function getQRCodes(req, res) {
-	pdf(res, req.body.compList);
+	pdf(res, req.query.compList);
 	res.status(200);
 }
 

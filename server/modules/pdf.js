@@ -7,19 +7,12 @@ const pathToPDF = __dirname + '/../ressources/pdf/';
 //generate pdf
 var generate = function(httpRes, compNameList) {
 
-	if (compNameList) {
-		Machine.getSome(compNameList)
-			.then(compList => fillPdf(httpRes, compList))
-			.catch(err => {
-				console.error(err);
-			});
-	} else {
-		Machine.getAll()
-			.then(compList => fillPdf(httpRes, compList))
-			.catch(err => {
-				console.error(err);
-			});
-	}
+	//fetch machines from the db based on the comp name list received 
+	Machine.getSome(compNameList)
+		.then(compList => fillPdf(httpRes, compList))
+		.catch(err => {
+			console.error(err);
+		});
 
 }
 
