@@ -2,7 +2,7 @@ import PDFDoc from 'pdfkit';
 import fs from 'fs';
 import Machine from '../models/machine.model';
 
-const pathToPDF = __dirname + '/../ressources/pdf/';
+const pathToPDF = __dirname + '/../ressources/pdf/output.pdf';
 
 //generate pdf
 exports.generate = function(httpRes, compNameList) {
@@ -31,6 +31,8 @@ exports.generate = function(httpRes, compNameList) {
 
 	//console.log('done writing pdf file');
 	doc.end();
+
+	httpRes.sendFile(pathToPDF);
 }
 
 function addImage(doc, comp) {
@@ -44,8 +46,8 @@ function addImage(doc, comp) {
 function generateDoc(httpRes) {
 	var doc = new PDFDoc;
 
-	doc.pipe(httpRes);
-	//doc.pipe(fs.createWriteStream(pathToPDF + 'output.pdf'));
+	//doc.pipe(httpRes);
+	doc.pipe(fs.createWriteStream(pathToPDF));
 
 	return doc;
 }
