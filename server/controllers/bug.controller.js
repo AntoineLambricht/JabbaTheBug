@@ -38,12 +38,12 @@ function changeStatus(req, res, next){
   var compBugList = req.body.compBugList;
   compBugList.forEach(comp => {
     Bug.update({'_id' : comp.bug_id},{'statusinfo': comp.status_info})
-      .exec()
+      .exec().then(res.status(200))
       .catch(err => {
         res.status(500);
         err.message;
       });
-    res.status(200);
+    // res.status(200);
   })
 
 
