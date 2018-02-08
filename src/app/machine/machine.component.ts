@@ -15,6 +15,7 @@ export class MachineComponent implements OnInit {
   listMachine : any = [];
   selectedAll = false;
 
+  color="";
 
   constructor(private _api: ApiService, private _papa: PapaParseService) {
   }
@@ -84,7 +85,8 @@ export class MachineComponent implements OnInit {
   refreshList(){
     this._api.getAllMachines()
     .subscribe(machines=>{
-      this.listMachine = machines
+      this.listMachine = machines;
+      console.log("", this.listMachine);
     });
   }
 
