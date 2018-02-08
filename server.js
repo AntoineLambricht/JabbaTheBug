@@ -8,6 +8,8 @@ import qrcode from './server/modules/qrcode';
 import pdf from './server/modules/pdf';
 import ipscan from './server/modules/ipscan';
 
+
+
 // make bluebird default Promise
 Promise = require('bluebird');
 
@@ -33,6 +35,7 @@ if (config.MONGOOSE_DEBUG) {
 // module.parent check is required to support mocha watch
 // src: https://github.com/mochajs/mocha/issues/1912
 
+
 // listen on port config.port
 app.listen(config.port, () => {
 	console.info(`server started on port ${config.port} (${config.env})`); // eslint-disable-line no-console
@@ -49,8 +52,8 @@ qrcode('localhost:5000/api/report/machine?name=LEN1401', url => {
 	}]);
 });
 */
-//test ipscan
-// ipscan.readfile(__dirname + '/server/ressources/ipscan/ipscan017.txt');
+//ipscan(__dirname + '/server/ressources/ipscan/ipscan017.txt');
+//ipscan(__dirname + '/server/ressources/ipscan/ipscan019.txt');
 
 
 export default app;

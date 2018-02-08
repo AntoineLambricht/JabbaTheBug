@@ -73,6 +73,7 @@ export class BugComponent implements OnInit {
   }
 
   private correspMachBug(){
+    console.log("-", this.listMachine)
     this.listBug.forEach(element => {
       var bugMachName = element.machinename;
       element["showDetails"] = false;
