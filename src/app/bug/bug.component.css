@@ -1,3 +1,10 @@
 #content_bug {
     margin-top: 70px;
 }
+
+.bugListPics {
+    width: 100%;
+    max-width: 250px;
+    height: 100%;
+    max-height: 250px;
+}
