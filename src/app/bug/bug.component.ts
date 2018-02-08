@@ -22,10 +22,10 @@ export class BugComponent implements OnInit {
     });
   }
 
-  changeCheck(id: string){
+  changeCheck(id: string, status:boolean){
     var bug= {};
     bug["bug_id"] = id;
-    bug["status_info"] = true;
+    bug["status_info"] = status;
     this._api.changeBugStatus(bug)
       .subscribe(response => {
         console.log("Status Changed");

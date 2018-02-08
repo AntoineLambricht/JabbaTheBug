@@ -19,7 +19,7 @@
         <td class="text-center">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" 
-                  (change)="changeCheck(bug._id)">
+                  (change)="changeCheck(bug._id, bug.statusinfo)" [(ngModel)]="bug.statusinfo">
           </div>
         </td>
       </tr>
